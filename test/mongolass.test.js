@@ -25,7 +25,7 @@ describe('test/mongolass.test.js', () => {
     UserModal = app.mongolass.model('User', UserSchema);
     try {
       user1 = await UserModal.insertOne({ name: 'nswbmw', age: 0 }).exec();
-      user2 = await UserModal.insertOne({ name: 'nswbmw1', age: 1 }).exec();
+      // user2 = await UserModal.insertOne({ name: 'nswbmw1', age: 1 }).exec();
     } catch (e) {
       console.log(e);
     }
@@ -33,8 +33,7 @@ describe('test/mongolass.test.js', () => {
 
   afterEach(async () => {
     // 清空测试数据
-    await UserModal.remove({ _id: user1.ops[0]._id });
-    await UserModal.remove({ _id: user2.ops[0]._id });
+    await UserModal.remove();
   });
 
   after(() => {
@@ -43,6 +42,11 @@ describe('test/mongolass.test.js', () => {
     });
   });
   afterEach(mock.restore);
+
+  it('create user by user-modal', () => {
+    // console.log(app.model);
+    // return app.model.User.expect().to.not.be.undefined;
+  });
 
   it('should GET /', () => {
     return app

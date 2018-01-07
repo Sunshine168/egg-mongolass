@@ -36,7 +36,7 @@ $ npm i egg-mongolass --save
 // {app_root}/config/plugin.js
 exports.mongolass = {
   enable: true,
-  package: 'egg-mongolass',
+  package: "egg-mongolass"
 };
 ```
 
@@ -44,19 +44,44 @@ exports.mongolass = {
 
 ```js
 // {app_root}/config/config.default.js
+// use the config url (see https://docs.mongodb.com/manual/reference/connection-string/)
 exports.mongolass = {
+    client{
+      url: 'mongodb://127.0.0.1/test',
+    }
 };
+// or
+exports.mongolass = {
+    client: {
+      host: 'localhost',
+      port: '27017',
+      database: 'blog',
+    },
+}
 ```
 
 see [config/config.default.js](config/config.default.js) for more detail.
 
 ## Example
 
-<!-- example here -->
+```js
+// app/model/user.js
+module.exports = app =>{
+    const { mongolass } = app;
+     const User =  mongolass
+    .model('User', {
+      account: { type: 'string' },
+      name: { type: 'string' },
+    })
+    User.index({ account: 1 }, { unique: true })
+    .exec();
+  return User
 
+}
+```
 ## Questions & Suggestions
 
-Please open an issue [here](https://github.com/eggjs/egg/issues).
+Please open an issue [here](https://github.com/Sunshine168/egg-mongolass/issues).
 
 ## License
 

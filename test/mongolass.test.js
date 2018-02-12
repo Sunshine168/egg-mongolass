@@ -24,19 +24,21 @@ describe('test/mongolass.test.js', () => {
       age: { type: 'number' },
     });
     UserModal = app.mongolass.model('User', UserSchema);
-    UserModal.index({ name: 1, _id: 1 }).exec();
+    UserModal.index({ _id: 1 }).exec();
     try {
       user1 = await UserModal.insertOne({ name: 'mai', age: 0 }).exec();
-      user2 = await UserModal.insertOne({ name: 'mai1', age: 1 }).exec();
+      user2 = await app.model.Tuser.insertOne({ name: 'mai1', age: 1 }).exec();
     } catch (e) {
-      // console.log(e);
+      console.log(e);
     }
   });
 
   it('enable the customPlugin should be work', async () => {
     const testUser = await UserModal.findOne({
       name: 'mai',
-    }).addCreatedAt().exec();
+    })
+      .addCreatedAt()
+      .exec();
     assert.ok(testUser.created_at);
     assert.ok(testUser.name);
   });
@@ -44,7 +46,7 @@ describe('test/mongolass.test.js', () => {
   afterEach(async () => {
     // 清空测试数据
     await UserModal.remove({ _id: user1.ops[0]._id }).exec();
-    await UserModal.remove({ _id: user2.ops[0]._id }).exec();
+    await app.model.Tuser.remove({ _id: user2.ops[0]._id }).exec();
   });
 
   after(() => {
@@ -53,11 +55,6 @@ describe('test/mongolass.test.js', () => {
     });
   });
   afterEach(mock.restore);
-
-  it('create user by user-modal', () => {
-    // console.log(app.model);
-    // return app.model.User.expect().to.not.be.undefined;
-  });
 
   it('should GET /', () => {
     return app

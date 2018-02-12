@@ -54,6 +54,11 @@ describe('test/mongolass.test.js', () => {
   });
   afterEach(mock.restore);
 
+  it('create user by user-modal', () => {
+    // console.log(app.model);
+    // return app.model.User.expect().to.not.be.undefined;
+  });
+
   it('should GET /', () => {
     return app
       .httpRequest()

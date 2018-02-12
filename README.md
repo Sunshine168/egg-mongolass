@@ -36,7 +36,7 @@ $ npm i egg-mongolass --save
 // {app_root}/config/plugin.js
 exports.mongolass = {
   enable: true,
-  package: 'egg-mongolass',
+  package: "egg-mongolass"
 };
 ```
 
@@ -44,19 +44,79 @@ exports.mongolass = {
 
 ```js
 // {app_root}/config/config.default.js
+// use the config url (see https://docs.mongodb.com/manual/reference/connection-string/)
 exports.mongolass = {
+    client{
+      url: 'mongodb://127.0.0.1/test',
+    }
 };
-```
+// or
+exports.mongolass = {
+    client: {
+      host: 'localhost',
+      port: '27017',
+      database: 'blog',
+    },
+}
 
+```
 see [config/config.default.js](config/config.default.js) for more detail.
+
+## Global plugin
+project_root/lib/mongolass.js
+
+```js
+'use strict';
+const moment = require('moment');
+const objectIdToTimestamp = require('objectid-to-timestamp');
+
+module.exports = {
+  addCreatedAt: {
+    afterFind(results) {
+      results.forEach(function(item) {
+        item.created_at = moment(objectIdToTimestamp(item._id)).format(
+          'YYYY-MM-DD HH:mm'
+        );
+      });
+      return results;
+    },
+    afterFindOne(result) {
+      if (result) {
+        result.created_at = moment(objectIdToTimestamp(result._id)).format(
+          'YYYY-MM-DD HH:mm'
+        );
+      }
+      return result;
+    },
+  },
+};
+// example in test suit
+const testUser = await UserModal.findOne({
+      name: 'mai',
+    }).addCreatedAt().exec();
+assert.ok(testUser.created_at);
+```
 
 ## Example
 
-<!-- example here -->
+```js
+// app/model/user.js
+module.exports = app =>{
+    const { mongolass } = app;
+     const User =  mongolass
+    .model('User', {
+      account: { type: 'string' },
+      name: { type: 'string' },
+    })
+    User.index({ account: 1 }, { unique: true })
+    .exec();
+  return User
 
+}
+```
 ## Questions & Suggestions
 
-Please open an issue [here](https://github.com/eggjs/egg/issues).
+Please open an issue [here](https://github.com/Sunshine168/egg-mongolass/issues).
 
 ## License
 

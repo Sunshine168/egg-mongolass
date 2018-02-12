@@ -2,6 +2,7 @@
 
 const mock = require('egg-mock');
 const Mongolass = require('mongolass');
+const assert = require('assert');
 
 describe('test/mongolass.test.js', () => {
   let app;
@@ -23,18 +24,27 @@ describe('test/mongolass.test.js', () => {
       age: { type: 'number' },
     });
     UserModal = app.mongolass.model('User', UserSchema);
+    UserModal.index({ name: 1, _id: 1 }).exec();
     try {
-      user1 = await UserModal.insertOne({ name: 'nswbmw', age: 0 }).exec();
-      user2 = await UserModal.insertOne({ name: 'nswbmw1', age: 1 }).exec();
+      user1 = await UserModal.insertOne({ name: 'mai', age: 0 }).exec();
+      user2 = await UserModal.insertOne({ name: 'mai1', age: 1 }).exec();
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
+  });
+
+  it('enable the customPlugin should be work', async () => {
+    const testUser = await UserModal.findOne({
+      name: 'mai',
+    }).addCreatedAt().exec();
+    assert.ok(testUser.created_at);
+    assert.ok(testUser.name);
   });
 
   afterEach(async () => {
     // 清空测试数据
-    await UserModal.remove({ _id: user1.ops[0]._id });
-    await UserModal.remove({ _id: user2.ops[0]._id });
+    await UserModal.remove({ _id: user1.ops[0]._id }).exec();
+    await UserModal.remove({ _id: user2.ops[0]._id }).exec();
   });
 
   after(() => {

@@ -9,12 +9,12 @@
 
 [npm-image]: https://img.shields.io/npm/v/egg-mongolass.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/egg-mongolass
-[travis-image]: https://img.shields.io/travis/eggjs/egg-mongolass.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-mongolass
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-mongolass.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-mongolass?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-mongolass.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-mongolass
+[travis-image]: https://img.shields.io/travis/Sunshine168/egg-mongolass.svg?style=flat-square
+[travis-url]: https://travis-ci.org/Sunshine168/egg-mongolass
+[codecov-image]: https://img.shields.io/codecov/c/github/Sunshine168/egg-mongolass.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/Sunshine168/egg-mongolass?branch=master
+[david-image]: https://img.shields.io/david/Sunshine168/egg-mongolass.svg?style=flat-square
+[david-url]: https://david-dm.org/Sunshine168/egg-mongolass
 [snyk-image]: https://snyk.io/test/npm/egg-mongolass/badge.svg?style=flat-square
 [snyk-url]: https://snyk.io/test/npm/egg-mongolass
 [download-image]: https://img.shields.io/npm/dm/egg-mongolass.svg?style=flat-square

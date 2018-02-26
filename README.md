@@ -30,6 +30,11 @@ Description here.
 $ npm i egg-mongolass --save
 ```
 
+## API(!!!) 
+same as [mongolass](https://github.com/mongolass/mongolass)
+more in [node-mongodb-native](http://mongodb.github.io/node-mongodb-native/3.0/api/Collection.html)
+
+
 ## Usage
 
 ```js

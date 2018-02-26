@@ -43,6 +43,14 @@ egg-mongolass 版本 | egg 1.x
 
 -->
 
+## API(!!!) 
+参照[mongolass](https://github.com/mongolass/mongolass)
+更多 [node-mongodb-native](http://mongodb.github.io/node-mongodb-native/3.0/api/Collection.html)
+
+请注意,不同连接mongodb的lib封装的api是不一样的,请参照文档。
+
+
+
 ## 开启插件
 
 ```js
@@ -53,23 +61,84 @@ exports.mongolass = {
 };
 ```
 
-## 使用场景
-
-- Why and What: 描述为什么会有这个插件，它主要在完成一件什么事情。
-尽可能描述详细。
-- How: 描述这个插件是怎样使用的，具体的示例代码，甚至提供一个完整的示例，并给出链接。
 
 ## 详细配置
 
-请到 [config/config.default.js](config/config.default.js) 查看详细配置项说明。
+```js
+// {app_root}/config/config.default.js
+// use the config url (see https://docs.mongodb.com/manual/reference/connection-string/)
+exports.mongolass = {
+    client{
+      url: 'mongodb://127.0.0.1/test',
+    }
+};
+// or
+exports.mongolass = {
+    client: {
+      host: 'localhost',
+      port: '27017',
+      database: 'blog',
+    },
+}
 
-## 单元测试
+```
 
-<!-- 描述如何在单元测试中使用此插件，例如 schedule 如何触发。无则省略。-->
+## Global plugin
+project_root/lib/mongolass.js
+
+```js
+'use strict';
+const moment = require('moment');
+const objectIdToTimestamp = require('objectid-to-timestamp');
+
+module.exports = {
+  addCreatedAt: {
+    afterFind(results) {
+      results.forEach(function(item) {
+        item.created_at = moment(objectIdToTimestamp(item._id)).format(
+          'YYYY-MM-DD HH:mm'
+        );
+      });
+      return results;
+    },
+    afterFindOne(result) {
+      if (result) {
+        result.created_at = moment(objectIdToTimestamp(result._id)).format(
+          'YYYY-MM-DD HH:mm'
+        );
+      }
+      return result;
+    },
+  },
+};
+// example in test suit
+const testUser = await UserModal.findOne({
+      name: 'mai',
+    }).addCreatedAt().exec();
+assert.ok(testUser.created_at);
+```
+
+## Example
+
+```js
+// app/model/user.js
+module.exports = app =>{
+    const { mongolass } = app;
+     const User =  mongolass
+    .model('User', {
+      account: { type: 'string' },
+      name: { type: 'string' },
+    })
+    User.index({ account: 1 }, { unique: true })
+    .exec();
+  return User
+
+}
+```
 
 ## 提问交流
 
-请到 [egg issues](https://github.com/eggjs/egg/issues) 异步交流。
+请到 [egg issues](https://github.com/Sunshine168/egg-mongolass/issues) 异步交流。
 
 ## License
 

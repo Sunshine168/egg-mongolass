@@ -7,10 +7,8 @@
  */
 exports.mongolass = {
   app: true,
-  client: {
-    host: '',
-    port: '',
-    database: '',
-    customPlugins: false,
-  },
+  host: '',
+  port: '',
+  database: '',
+  customPlugins: false,
 };

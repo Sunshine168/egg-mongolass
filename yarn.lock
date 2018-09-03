@@ -208,9 +208,12 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-another-json-schema@3.4.0:
-  version "3.4.0"
-  resolved "https://registry.npmjs.org/another-json-schema/-/another-json-schema-3.4.0.tgz#a338707e43cefeb6ac737ec81da3bed10f296fe2"
+another-json-schema@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.npmjs.org/another-json-schema/-/another-json-schema-3.7.0.tgz#a0c801cad92923b3679e38b6e4f6c0b12ec2928a"
+  dependencies:
+    mongodb "3.1.0-beta4"
+    validator "10.2.0"
 
 ansi-escapes@^3.0.0:
   version "3.0.0"
@@ -1151,6 +1154,10 @@ browserslist@^2.1.2:
   dependencies:
     caniuse-lite "^1.0.30000780"
     electron-to-chromium "^1.3.28"
+
+bson@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/bson/-/bson-1.1.0.tgz#bee57d1fb6a87713471af4e32bcae36de814b5b0"
 
 bson@~1.0.4:
   version "1.0.4"
@@ -2965,9 +2972,9 @@ inflation@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/inflation/-/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
 
-inflected@2.0.3:
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/inflected/-/inflected-2.0.3.tgz#d16e166d0c10b5bdd7e741228e08733410ebfc8d"
+inflected@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/inflected/-/inflected-2.0.4.tgz#323770961ccbe992a98ea930512e9a82d3d3ef77"
 
 inflection@^1.12.0:
   version "1.12.0"
@@ -3579,7 +3586,11 @@ lodash@4.15.0:
   version "4.15.0"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.15.0.tgz#3162391d8f0140aa22cf8f6b3c34d6b7f63d3aa9"
 
-lodash@4.17.4, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.3.0:
+lodash@4.17.10:
+  version "4.17.10"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
+
+lodash@^4.17.2, lodash@^4.17.4, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3757,18 +3768,37 @@ moment-timezone@^0.5.0:
   version "2.20.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
 
-mongodb-core@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.npmjs.org/mongodb-core/-/mongodb-core-3.0.2.tgz#914896092dd45427d9a4f98a7997a0bfb81d163b"
+mongodb-core@3.1.0-beta4:
+  version "3.1.0-beta4"
+  resolved "https://registry.npmjs.org/mongodb-core/-/mongodb-core-3.1.0-beta4.tgz#44813da6ee0a61d26f0d523207cfba8ca32e59fc"
   dependencies:
     bson "~1.0.4"
     require_optional "^1.0.1"
+  optionalDependencies:
+    saslprep "^1.0.0"
 
-mongodb@~3.0.1:
-  version "3.0.2"
-  resolved "https://registry.npmjs.org/mongodb/-/mongodb-3.0.2.tgz#28172302ed4e9388d8091e2cc4618057e6f5debc"
+mongodb-core@3.1.3:
+  version "3.1.3"
+  resolved "https://registry.npmjs.org/mongodb-core/-/mongodb-core-3.1.3.tgz#b036bce5290b383fe507238965bef748dd8adb75"
   dependencies:
-    mongodb-core "3.0.2"
+    bson "^1.1.0"
+    require_optional "^1.0.1"
+    safe-buffer "^5.1.2"
+  optionalDependencies:
+    saslprep "^1.0.0"
+
+mongodb@3.1.0-beta4:
+  version "3.1.0-beta4"
+  resolved "https://registry.npmjs.org/mongodb/-/mongodb-3.1.0-beta4.tgz#922cb05c37d04a51ea783569743ef2a893585bfe"
+  dependencies:
+    mongodb-core "3.1.0-beta4"
+
+mongodb@~3.1.3:
+  version "3.1.4"
+  resolved "https://registry.npmjs.org/mongodb/-/mongodb-3.1.4.tgz#0ff07a7409a4edf05e71f9ff8df3633bd278ed53"
+  dependencies:
+    mongodb-core "3.1.3"
+    safe-buffer "^5.1.2"
 
 mongolass-plugin-populate@*:
   version "0.2.1"
@@ -3776,18 +3806,18 @@ mongolass-plugin-populate@*:
   dependencies:
     lodash "4.15.0"
 
-mongolass@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.npmjs.org/mongolass/-/mongolass-4.1.3.tgz#470b43e57871d42423065761d82c0c9aa3adf2e3"
+mongolass@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.npmjs.org/mongolass/-/mongolass-4.4.0.tgz#c67e67570573261cd1e61aa3507334032c7fc191"
   dependencies:
-    another-json-schema "3.4.0"
+    another-json-schema "^3.7.0"
     debug "3.1.0"
-    inflected "2.0.3"
-    lodash "4.17.4"
-    mongodb "~3.0.1"
+    inflected "2.0.4"
+    lodash "4.17.10"
+    mongodb "~3.1.3"
     mongolass-plugin-populate "*"
     muri "1.3.0"
-    validator "9.2.0"
+    validator "10.6.0"
 
 ms@2.0.0:
   version "2.0.0"
@@ -4679,9 +4709,17 @@ safe-buffer@^5.0.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
+safe-buffer@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
+
 safe-timers@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/safe-timers/-/safe-timers-1.1.0.tgz#c58ae8325db8d3b067322f0a4ef3a0cad67aad83"
+
+saslprep@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/saslprep/-/saslprep-1.0.1.tgz#b644e0ba25b156b652f3cb90df7542f896049ba6"
 
 sax@=0.4.2:
   version "0.4.2"
@@ -5289,9 +5327,13 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
 
-validator@9.2.0:
-  version "9.2.0"
-  resolved "https://registry.npmjs.org/validator/-/validator-9.2.0.tgz#ad216eed5f37cac31a6fe00ceab1f6b88bded03e"
+validator@10.2.0:
+  version "10.2.0"
+  resolved "https://registry.npmjs.org/validator/-/validator-10.2.0.tgz#61d6b10c3d5c9f368c75c2ce8ca2b792522eaafa"
+
+validator@10.6.0:
+  version "10.6.0"
+  resolved "https://registry.npmjs.org/validator/-/validator-10.6.0.tgz#a9bdce685b3c3e8480e7ebbb9eb95c54cd9733b0"
 
 vary@^1.0.0:
   version "1.1.2"
